@@ -13,9 +13,9 @@ function getData() {
         let danceList = snapshot.val();
         if (danceList) {
             for (let danceId in danceList) {
-                danceObj = danceList[danceId];
+                let danceObj = danceList[danceId];
                 let dataRow = [];
-                dance = document.createElement('a');
+                let dance = document.createElement('a');
                 dance.href = danceObj['Stepsheet Link'];
                 dance.target = "_blank";
                 dance.rel = "noopener noreferrer";
@@ -25,8 +25,7 @@ function getData() {
                 dataRow.push(danceObj.Music);
                 dataRow.push(danceObj.Level);
                 dataRow.push(danceObj.Memory.toString());
-                dataRow.push(danceObj["Month Learned"].concat("/", danceObj["Year Learned"]));
-                console.log(dataRow);
+                dataRow.push(danceObj["Month Learned"].concat(" ", danceObj["Year Learned"]));
                 dataSet.push(dataRow);
             };
         };
@@ -35,7 +34,7 @@ function getData() {
 };
 
 function createDataTable(dataSet) {
-    console.log('Creating table...')
+    DataTable.datetime("MMMM YYYY")
     let dt = new DataTable('#danceList', {
         columns: [
             {title: 'Dance'},
@@ -47,6 +46,7 @@ function createDataTable(dataSet) {
         ],
         data: dataSet,
         paging: false,
+        columnDefs: [{targets:5, type:"date-eu"}]
 
     });
 

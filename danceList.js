@@ -25,8 +25,16 @@ function getData() {
                 dataRow.push(danceObj.Music);
                 dataRow.push(danceObj.Level);
                 dataRow.push(danceObj.Memory.toString());
-                dataRow.push(danceObj["Month Learned"].concat(" ", danceObj["Year Learned"]));
+                let dance_date = "";
+                if (danceObj["Month Learned"] || danceObj["Year Learned"]) {
+                    dance_date = danceObj["Month Learned"].concat(" ", danceObj["Year Learned"]);
+                }
+
+                dataRow.push(dance_date);
+
                 dataSet.push(dataRow);
+                console.log(typeof(danceObj.Level));
+                console.log(typeof(danceObj["Month Learned"].concat(" ", danceObj["Year Learned"])));
             };
         };
         createDataTable(dataSet);
@@ -34,7 +42,7 @@ function getData() {
 };
 
 function createDataTable(dataSet) {
-    DataTable.datetime("MMMM YYYY")
+    DataTable.datetime("MMMM YYYY");
     let dt = new DataTable('#danceList', {
         columns: [
             {title: 'Dance'},
@@ -46,8 +54,7 @@ function createDataTable(dataSet) {
         ],
         data: dataSet,
         paging: false,
-        columnDefs: [{targets:5, type:"date-eu"}]
-
+        order: [[5, 'desc'], [0, 'asc']]
     });
 
 };

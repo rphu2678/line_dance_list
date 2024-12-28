@@ -46,7 +46,7 @@ function getLocalData() {
     fetch('./static/line-dance-db.json')
         .then(res => res.json())
         .then(danceList => {
-            for (let danceId in danceList) {
+            for (let danceId in danceList['line_dances']) {
                 console.log(danceId);
                 let danceObj = danceList[danceId];
                 console.log(danceObj);

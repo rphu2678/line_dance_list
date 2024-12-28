@@ -47,7 +47,9 @@ function getLocalData() {
         .then(res => res.json())
         .then(danceList => {
             for (let danceId in danceList) {
+                console.log(danceId);
                 let danceObj = danceList[danceId];
+                console.log(danceObj);
                 let dataRow = [];
                 let dance = document.createElement('a');
                 dance.href = danceObj['Stepsheet Link'];

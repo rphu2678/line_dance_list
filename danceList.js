@@ -46,8 +46,10 @@ function getLocalData() {
     fetch('./static/line-dance-db.json')
         .then(res => res.json())
         .then(danceList => {
-            for (let danceId in danceList) {
-                let danceObj = danceList[danceId];
+            let dataSet = [];
+            let lineDanceList = danceList['line_dances'];
+            for (let danceId in lineDanceList) {
+                let danceObj = lineDanceList[danceId];
                 let dataRow = [];
                 let dance = document.createElement('a');
                 dance.href = danceObj['Stepsheet Link'];

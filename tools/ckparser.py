@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 
 def main():
-    input_json = r'./static/line-dance-db.json'
+    input_json = r'../static/line-dance-db.json'
     with open(input_json) as f:
         db = json.load(f)
     json_backup = insert_timestamp(input_json)
